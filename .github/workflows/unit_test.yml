@@ -51,7 +51,7 @@ jobs:
         env:
           WORKDIR: ./
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CHECKSTYLE_CONFIG: style/checkstyle.xml
+          CHECKSTYLE_CONFIG: checkstyle.xml
           REVIEWDOG_VERSION: v0.10.2
         run: |
           wget -O - -q https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.22/checkstyle-8.22-all.jar > /opt/checkstyle.jar
