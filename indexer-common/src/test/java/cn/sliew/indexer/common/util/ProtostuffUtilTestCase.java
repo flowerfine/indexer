@@ -2,8 +2,10 @@ package cn.sliew.indexer.common.util;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ProtostuffUtilTestCase {
 
