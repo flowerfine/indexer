@@ -131,12 +131,6 @@
                 <version>30.0-jre</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.ctrip.framework.apollo</groupId>
-                <artifactId>apollo-client</artifactId>
-                <version>1.5.1</version>
-            </dependency>
-
             <!-- 用于JSON API文档的生成-->
             <dependency>
                 <groupId>io.springfox</groupId>

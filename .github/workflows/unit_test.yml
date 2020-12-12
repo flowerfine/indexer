@@ -3,7 +3,7 @@ name: Unit Test
 on: [push, pull_request]
 
 jobs:
-  ubuntu-jdk8:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

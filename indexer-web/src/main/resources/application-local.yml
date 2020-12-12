@@ -1,6 +1,3 @@
-apollo:
-  meta: http://dev.config.xinc818.com:8080
-
 ## datasource
 spring:
   datasource:

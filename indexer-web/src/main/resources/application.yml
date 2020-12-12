@@ -5,13 +5,6 @@ server:
   port: 8080
   servlet.context-path: /indexer
 
-## apollo configs
-app.id: indexer
-apollo.bootstrap:
-  enabled: true
-  namespaces:
-  eagerLoad.enabled: true
-
 ## dubbo
 dubbo:
   application.name: indexer
