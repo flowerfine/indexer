@@ -1,0 +1,33 @@
+spring.profiles.active: ${ENV:local}
+
+spring.application.name: indexer
+server:
+  port: 8080
+  servlet.context-path: /indexer
+
+## apollo configs
+app.id: indexer
+apollo.bootstrap:
+  enabled: true
+  namespaces:
+  eagerLoad.enabled: true
+
+## dubbo
+dubbo:
+  application.name: indexer
+  config-center.timeout: 86400
+  consumer.check: false
+  protocol:
+    name: dubbo
+    port: 20880
+
+## mybatis
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration.map-underscore-to-camel-case: true
+mybatis-plus:
+  type-aliases-package: com.vip8.indexer.dao.entity
+  global-config:
+    field-strategy: 1
+    db-column-underline: true
