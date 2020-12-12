@@ -50,6 +50,9 @@ jobs:
           command: ./mvnw -B -ntp clean install -DskipTests=false -DskipIntegrationTests=false -Dcheckstyle.skip=false -Drat.skip=false -Dmaven.javadoc.skip=true
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true # optional (default = false)
 
   Checkstyle:
     name: Check code style
