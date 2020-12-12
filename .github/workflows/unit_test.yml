@@ -40,12 +40,6 @@ jobs:
           command: ./mvnw --batch-mode --no-transfer-progress clean install -DskipTests=false -DskipIntegrationTests=false -Dcheckstyle.skip=false -Drat.skip=false -Dmaven.javadoc.skip=true
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
-    build:
-      name: Build
-      runs-on: ubuntu-latest
-      steps:
-
-
 
   Checkstyle:
     name: Check code style
