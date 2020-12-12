@@ -22,7 +22,7 @@ jobs:
       #      - name: Check license
       #        run: ./mvnw -B apache-rat:check
       - name: Compile
-        run: ./mvnw -B clean compile install --spring.profiles.active=local -Dmaven.test.skip=true
+        run: ./mvnw -B clean compile install -Dmaven.test.skip=true
       #      - name: Bootstrap database
       #        run: |
       #          sed -i "s/: root/: test/g" $(pwd)/docker/docker-swarm/docker-compose.yml
@@ -47,7 +47,7 @@ jobs:
         with:
           timeout_minutes: 40
           max_attempts: 3
-          command: ./mvnw -B --no-transfer-progress clean install -DskipTests=false -DskipIntegrationTests=false -Dcheckstyle.skip=false -Drat.skip=false -Dmaven.javadoc.skip=true
+          command: ./mvnw -B -ntp clean install -DskipTests=false -DskipIntegrationTests=false -Dcheckstyle.skip=false -Drat.skip=false -Dmaven.javadoc.skip=true
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
 
