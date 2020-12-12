@@ -22,7 +22,7 @@ jobs:
       #      - name: Check license
       #        run: ./mvnw -B apache-rat:check
       - name: Compile
-        run: ./mvnw -B clean compile install -Prelease -Dmaven.test.skip=true
+        run: ./mvnw -B clean compile install --spring.profiles.active=local -Dmaven.test.skip=true
       #      - name: Bootstrap database
       #        run: |
       #          sed -i "s/: root/: test/g" $(pwd)/docker/docker-swarm/docker-compose.yml
