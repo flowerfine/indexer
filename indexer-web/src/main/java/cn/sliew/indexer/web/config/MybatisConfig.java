@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Slf4j
 @Configuration
-@MapperScan("com.vip8.indexer.dao")
+@MapperScan("cn.sliew.indexer.dao")
 public class MybatisConfig {
 
     @Bean
