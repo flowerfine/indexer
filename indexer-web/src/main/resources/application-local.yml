@@ -3,9 +3,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      url: jdbc:mysql://test-xc-dev.mysql.rds.aliyuncs.com:3331/data_service?serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
-      username: test_xc_dev
-      password: x!c@_d#ev$xcD_SdeAvM
+      url: jdbc:mysql://localhost:3306/indexer?serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: 123
       driver-class-name: com.mysql.cj.jdbc.Driver
       filters: stat,wall,slf4j
       validation-query: SELECT 1 FROM DUAL

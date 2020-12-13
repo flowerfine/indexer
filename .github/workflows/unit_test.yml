@@ -43,10 +43,10 @@ jobs:
       #          docker-compose -f $(pwd)/docker/docker-compose.yml create --force-recreate dolphinscheduler-postgresql
       #          sudo cp $(pwd)/sql/dolphinscheduler-postgre.sql $(docker volume inspect docker-swarm_dolphinscheduler-postgresql-initdb | grep "Mountpoint" | awk -F "\"" '{print $4}')
       #          docker-compose -f $(pwd)/docker/docker-compose.yml up -d dolphinscheduler-postgresql
-      #      - name: Test
-      #        run: |
-      #          export MAVEN_OPTS='-Dmaven.repo.local=.m2/repository -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -Xmx5g'
-      #          mvn test -B -Dmaven.test.skip=false
+      - name: Test
+        run: |
+          export MAVEN_OPTS='-Dmaven.repo.local=.m2/repository -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -Xmx5g'
+          ./mvnw -B test  -Dmaven.test.skip=false
       - name: Run SonarCloud Analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
