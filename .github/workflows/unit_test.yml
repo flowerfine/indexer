@@ -9,7 +9,6 @@ jobs:
     services:
       mysql: bitnami/mysql:8.0
       env:
-        TZ: Asia/Shanghai
         MYSQL_ROOT_USER: root
         MYSQL_ROOT_PASSWORD: 123
         MYSQL_DATABASE: indexer
