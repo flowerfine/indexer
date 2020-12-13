@@ -73,10 +73,9 @@
             <property name="allowNonPrintableEscapes" value="true"/>
         </module>
 
-        <module name="LineLengthCheck">
+        <module name="LineLength">
             <property name="max" value="200"/>
             <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
-            <property name="fileExtensions" value="java"/>
         </module>
 
         <module name="EmptyBlock">
