@@ -5,6 +5,18 @@ on: [push, pull_request]
 jobs:
   Build:
     runs-on: ubuntu-latest
+
+    services:
+      mysql: bitnami/mysql:8.0
+      env:
+        TZ: Asia/Shanghai
+        MYSQL_ROOT_USER: root
+        MYSQL_ROOT_PASSWORD: 123
+        MYSQL_DATABASE: indexer
+      ports:
+        - 3306:3306
+      options: --health-cmd="mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 3
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -19,16 +31,14 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      #      - name: Check license
-      #        run: ./mvnw -B apache-rat:check
       - name: Compile
         run: ./mvnw -B clean compile install -Dmaven.test.skip=true
       #      - name: Bootstrap database
       #        run: |
-      #          sed -i "s/: root/: test/g" $(pwd)/docker/docker-swarm/docker-compose.yml
-      #          docker-compose -f $(pwd)/docker/docker-swarm/docker-compose.yml create --force-recreate dolphinscheduler-zookeeper dolphinscheduler-postgresql
+      #          sed -i "s/: root/: test/g" $(pwd)/docker/docker-compose.yml
+      #          docker-compose -f $(pwd)/docker/docker-compose.yml create --force-recreate dolphinscheduler-postgresql
       #          sudo cp $(pwd)/sql/dolphinscheduler-postgre.sql $(docker volume inspect docker-swarm_dolphinscheduler-postgresql-initdb | grep "Mountpoint" | awk -F "\"" '{print $4}')
-      #          docker-compose -f $(pwd)/docker/docker-swarm/docker-compose.yml up -d dolphinscheduler-zookeeper dolphinscheduler-postgresql
+      #          docker-compose -f $(pwd)/docker/docker-compose.yml up -d dolphinscheduler-postgresql
       #      - name: Test
       #        run: |
       #          export MAVEN_OPTS='-Dmaven.repo.local=.m2/repository -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -Xmx5g'
