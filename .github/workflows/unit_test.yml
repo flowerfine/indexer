@@ -37,22 +37,24 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Compile
         run: ./mvnw -B clean compile install -Dmaven.test.skip=true
-      #      - name: Bootstrap database
-      #        run: |
-      #          sed -i "s/: root/: test/g" $(pwd)/docker/docker-compose.yml
-      #          docker-compose -f $(pwd)/docker/docker-compose.yml create --force-recreate dolphinscheduler-postgresql
-      #          sudo cp $(pwd)/sql/dolphinscheduler-postgre.sql $(docker volume inspect docker-swarm_dolphinscheduler-postgresql-initdb | grep "Mountpoint" | awk -F "\"" '{print $4}')
-      #          docker-compose -f $(pwd)/docker/docker-compose.yml up -d dolphinscheduler-postgresql
       - name: Test
         run: |
-          export MAVEN_OPTS='-Dmaven.repo.local=.m2/repository -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -Xmx5g'
+          export MAVEN_OPTS='-Dmaven.repo.local=.m2/repository -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -Xmx2g'
           ./mvnw -B test  -Dmaven.test.skip=false
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./indexer/target/site/jacoco/jacoco.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: false # optional (default = false)
       - name: Run SonarCloud Analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: >
           ./mvnw -B verify sonar:sonar
+          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+          -Dsonar.core.codeCoveragePlugin=jacoco
           -Dmaven.test.skip=true
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.organization=flowerfine
@@ -62,11 +64,7 @@ jobs:
           timeout_minutes: 40
           max_attempts: 3
           command: ./mvnw -B -ntp clean install -DskipTests=false -DskipIntegrationTests=false -Dcheckstyle.skip=false -Drat.skip=false -Dmaven.javadoc.skip=true
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          verbose: true # optional (default = false)
+
 
   Checkstyle:
     name: Check code style
