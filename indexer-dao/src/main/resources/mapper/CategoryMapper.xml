@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sliew.indexer.dao.mapper.CategoryMapper">
+  <resultMap id="BaseResultMap" type="cn.sliew.indexer.dao.entity.Category">
+    <!--@mbg.generated-->
+    <!--@Table category-->
+    <id column="id" property="id" />
+    <result column="category_id" property="categoryId" />
+    <result column="category_name" property="categoryName" />
+    <result column="parent_category_id" property="parentCategoryId" />
+    <result column="category_id_path" property="categoryIdPath" />
+    <result column="category_name_path" property="categoryNamePath" />
+    <result column="is_brand" property="isBrand" />
+    <result column="tips" property="tips" />
+    <result column="creator" property="creator" />
+    <result column="modifier" property="modifier" />
+    <result column="is_deleted" property="isDeleted" />
+    <result column="gmt_create" property="gmtCreate" />
+    <result column="gmt_modified" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, category_id, category_name, parent_category_id, category_id_path, category_name_path, 
+    is_brand, tips, creator, modifier, is_deleted, gmt_create, gmt_modified
+  </sql>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.sliew.indexer.dao.entity.Category" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      category_id,
+      category_name,
+      parent_category_id,
+      category_id_path,
+      category_name_path,
+      is_brand,
+      tips,
+      creator,
+      modifier,
+      is_deleted,
+      gmt_create,
+      gmt_modified,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      #{categoryId},
+      #{categoryName},
+      #{parentCategoryId},
+      #{categoryIdPath},
+      #{categoryNamePath},
+      #{isBrand},
+      #{tips},
+      #{creator},
+      #{modifier},
+      #{isDeleted},
+      #{gmtCreate},
+      #{gmtModified},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id},
+      </if>
+      category_id = #{categoryId},
+      category_name = #{categoryName},
+      parent_category_id = #{parentCategoryId},
+      category_id_path = #{categoryIdPath},
+      category_name_path = #{categoryNamePath},
+      is_brand = #{isBrand},
+      tips = #{tips},
+      creator = #{creator},
+      modifier = #{modifier},
+      is_deleted = #{isDeleted},
+      gmt_create = #{gmtCreate},
+      gmt_modified = #{gmtModified},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.sliew.indexer.dao.entity.Category" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="parentCategoryId != null">
+        parent_category_id,
+      </if>
+      <if test="categoryIdPath != null">
+        category_id_path,
+      </if>
+      <if test="categoryNamePath != null">
+        category_name_path,
+      </if>
+      <if test="isBrand != null">
+        is_brand,
+      </if>
+      <if test="tips != null">
+        tips,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName},
+      </if>
+      <if test="parentCategoryId != null">
+        #{parentCategoryId},
+      </if>
+      <if test="categoryIdPath != null">
+        #{categoryIdPath},
+      </if>
+      <if test="categoryNamePath != null">
+        #{categoryNamePath},
+      </if>
+      <if test="isBrand != null">
+        #{isBrand},
+      </if>
+      <if test="tips != null">
+        #{tips},
+      </if>
+      <if test="creator != null">
+        #{creator},
+      </if>
+      <if test="modifier != null">
+        #{modifier},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId},
+      </if>
+      <if test="categoryName != null">
+        category_name = #{categoryName},
+      </if>
+      <if test="parentCategoryId != null">
+        parent_category_id = #{parentCategoryId},
+      </if>
+      <if test="categoryIdPath != null">
+        category_id_path = #{categoryIdPath},
+      </if>
+      <if test="categoryNamePath != null">
+        category_name_path = #{categoryNamePath},
+      </if>
+      <if test="isBrand != null">
+        is_brand = #{isBrand},
+      </if>
+      <if test="tips != null">
+        tips = #{tips},
+      </if>
+      <if test="creator != null">
+        creator = #{creator},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified},
+      </if>
+    </trim>
+  </insert>
+</mapper>
