@@ -126,6 +126,12 @@
                 <version>3.5.6</version>
             </dependency>
 
+            <!-- commons-chain -->
+            <dependency>
+                <groupId>commons-chain</groupId>
+                <artifactId>commons-chain</artifactId>
+                <version>1.2</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
