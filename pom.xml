@@ -301,6 +301,7 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
+                    <check></check>
                     <aggregate>true</aggregate>
                     <outputDirectory>./target/cobertura</outputDirectory>
                     <encoding>${project.build.sourceEncoding}</encoding>
@@ -311,7 +312,6 @@
                     </instrumentation>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>
