@@ -126,6 +126,12 @@
                 <version>3.5.6</version>
             </dependency>
 
+            <!-- commons-chain -->
+            <dependency>
+                <groupId>commons-chain</groupId>
+                <artifactId>commons-chain</artifactId>
+                <version>1.2</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -143,6 +149,13 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>2.9.2</version>
+            </dependency>
+
+            <!--easyexcel-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>2.2.7</version>
             </dependency>
 
             <!--protostuff序列化-->
@@ -301,8 +314,7 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <check>
-                    </check>
+                    <check></check>
                     <aggregate>true</aggregate>
                     <outputDirectory>./target/cobertura</outputDirectory>
                     <encoding>${project.build.sourceEncoding}</encoding>
@@ -313,7 +325,6 @@
                     </instrumentation>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>

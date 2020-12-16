@@ -14,7 +14,7 @@ import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 
 import javax.net.ssl.SSLContext;
 import java.io.File;
@@ -29,8 +29,7 @@ public class ElasticsearchConfig {
 
     @Bean
     public RestHighLevelClient restHighLevelClient() throws Exception {
-        File root = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX);
-        File file = ResourceUtils.getFile(ResourceUtils.FILE_URL_PREFIX + root.getAbsolutePath() + "/http.p12");
+        File file = new ClassPathResource("/http.p12").getFile();
         KeyStore keyStore = KeyStore.getInstance("pkcs12");
         try (InputStream is = Files.newInputStream(Paths.get(file.toURI()))) {
             keyStore.load(is, "xjw8amBaQ1moB=Y".toCharArray());
