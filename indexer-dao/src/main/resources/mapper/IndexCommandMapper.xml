@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sliew.indexer.dao.mapper.IndexCommandMapper">
+    <resultMap id="BaseResultMap" type="cn.sliew.indexer.dao.entity.IndexCommand">
+        <id column="id" property="id"/>
+        <result column="table_name" property="tableName"/>
+        <result column="topic_type" property="topicType"/>
+        <result column="topic_id" property="topicId"/>
+        <result column="file_type" property="fileType"/>
+        <result column="file_id" property="fileId"/>
+        <result column="version" property="version"/>
+        <result column="creator" property="creator"/>
+        <result column="modifier" property="modifier"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, `table_name`, topic_type, topic_id, file_type, file_id, version, creator, modifier,
+        is_deleted, gmt_create, gmt_modified
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from index_command
+        where
+            id = #{id}
+        and is_deleted = 0
+    </select>
+    <insert id="insert" parameterType="cn.sliew.indexer.dao.entity.IndexCommand">
+        insert into index_command (`table_name`, topic_type, topic_id, file_type, file_id, version,
+          creator, modifier)
+        values (#{tableName}, #{topicType}, #{topicId}, #{fileType}, #{fileId}, #{version},
+          #{creator}, #{modifier})
+    </insert>
+</mapper>
