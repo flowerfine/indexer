@@ -33,14 +33,14 @@ public class CategoryReadListener extends AnalysisEventListener<EasyExcelTestCas
         if (StringUtils.hasText(category.getId())) {
             saveIdName(category);
         }
-        if (StringUtils.hasText(category.getFr_id())) {
-            savefrIdName(category);
-        }
         if (StringUtils.hasText(category.getSed_id())) {
             savesedIdName(category);
         }
         if (StringUtils.hasText(category.getTh_id())) {
             savethIdName(category);
+        }
+        if (StringUtils.hasText(category.getFr_id())) {
+            savefrIdName(category);
         }
         if (StringUtils.hasText(category.getFv_id())) {
             savefvIdName(category);
@@ -56,23 +56,13 @@ public class CategoryReadListener extends AnalysisEventListener<EasyExcelTestCas
         categoryMapper.insertOrUpdateSelective(category1);
     }
 
-    private void savefrIdName(EasyExcelTestCase.Category category) {
-        Category category1 = new Category();
-        category1.setCategoryId(category.getFr_id());
-        category1.setCategoryName(category.getFr_namefrom());
-        category1.setParentCategoryId(category.getId());
-        category1.setCategoryIdPath(category.getId() + "|" + category.getFr_id());
-        category1.setCategoryNamePath(category.getName() + "|" + category.getFr_namefrom());
-        categoryMapper.insertOrUpdateSelective(category1);
-    }
-
     private void savesedIdName(EasyExcelTestCase.Category category) {
         Category category1 = new Category();
         category1.setCategoryId(category.getSed_id());
         category1.setCategoryName(category.getSed_name());
-        category1.setParentCategoryId(category.getFr_id());
-        category1.setCategoryIdPath(category.getId() + "|" + category.getFr_id() + "|" + category.getSed_id());
-        category1.setCategoryNamePath(category.getName() + "|" + category.getFr_namefrom() + "|" + category.getSed_name());
+        category1.setParentCategoryId(category.getId());
+        category1.setCategoryIdPath(category.getId() + "|" + category.getSed_id());
+        category1.setCategoryNamePath(category.getName() + "|" + category.getSed_name());
         categoryMapper.insertOrUpdateSelective(category1);
     }
 
@@ -81,8 +71,18 @@ public class CategoryReadListener extends AnalysisEventListener<EasyExcelTestCas
         category1.setCategoryId(category.getTh_id());
         category1.setCategoryName(category.getTh_namefrom());
         category1.setParentCategoryId(category.getSed_id());
-        category1.setCategoryIdPath(category.getId() + "|" + category.getFr_id() + "|" + category.getSed_id() + "|" + category.getTh_id());
-        category1.setCategoryNamePath(category.getName() + "|" + category.getFr_namefrom() + "|" + category.getSed_name() + "|" + category.getTh_namefrom());
+        category1.setCategoryIdPath(category.getId() + "|" + category.getSed_id() + "|" + category.getTh_id());
+        category1.setCategoryNamePath(category.getName() + "|" + category.getSed_name() + "|" + category.getTh_namefrom());
+        categoryMapper.insertOrUpdateSelective(category1);
+    }
+
+    private void savefrIdName(EasyExcelTestCase.Category category) {
+        Category category1 = new Category();
+        category1.setCategoryId(category.getFr_id());
+        category1.setCategoryName(category.getFr_namefrom());
+        category1.setParentCategoryId(category.getTh_id());
+        category1.setCategoryIdPath(category.getId() + "|" + category.getFr_id());
+        category1.setCategoryNamePath(category.getName() + "|" + category.getFr_namefrom());
         categoryMapper.insertOrUpdateSelective(category1);
     }
 

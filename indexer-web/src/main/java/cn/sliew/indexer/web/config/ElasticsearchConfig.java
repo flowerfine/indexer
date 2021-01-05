@@ -12,6 +12,8 @@ import org.apache.http.ssl.SSLContexts;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchRestClientAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -25,6 +27,7 @@ import java.security.KeyStore;
 
 @Slf4j
 @Configuration
+@AutoConfigureBefore(ElasticsearchRestClientAutoConfiguration.class)
 public class ElasticsearchConfig {
 
     @Bean
