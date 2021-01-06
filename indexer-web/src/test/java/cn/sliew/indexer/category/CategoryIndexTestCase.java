@@ -1,19 +1,14 @@
 package cn.sliew.indexer.category;
 
 import cn.sliew.indexer.ApplicationTestCase;
-import cn.sliew.indexer.common.util.JacksonUtil;
 import cn.sliew.indexer.dao.entity.Category;
 import cn.sliew.indexer.dao.mapper.CategoryMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.xcontent.LoggingDeprecationHandler;
-import org.elasticsearch.common.xcontent.NamedXContentRegistry;
 import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentParser;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +17,6 @@ import org.springframework.util.CollectionUtils;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
