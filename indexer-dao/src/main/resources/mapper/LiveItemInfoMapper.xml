@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sliew.indexer.dao.mapper.LiveItemInfoMapper">
+    <resultMap id="BaseResultMap" type="cn.sliew.indexer.dao.entity.LiveItemInfo">
+        <id column="id" property="id"/>
+        <result column="item_url" property="itemUrl"/>
+        <result column="item_id" property="itemId"/>
+        <result column="channel_id" property="channelId"/>
+        <result column="live_code" property="liveCode"/>
+        <result column="live_stream_id" property="liveStreamId"/>
+        <result column="anchor_code" property="anchorCode"/>
+        <result column="item_on_time" property="itemOnTime"/>
+        <result column="item_off_time" property="itemOffTime"/>
+        <result column="item_max_online" property="itemMaxOnline"/>
+        <result column="operate" property="operate"/>
+        <result column="creator" property="creator"/>
+        <result column="modifier" property="modifier"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+        <result column="volume" property="volume"/>
+        <result column="gmv" property="gmv"/>
+        <result column="price" property="price"/>
+        <result column="status" property="status"/>
+        <result column="item_name" property="itemName"/>
+        <result column="item_img" property="itemImg"/>
+        <result column="platform" property="platform"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="initial_volume" property="initialVolume"/>
+        <result column="best_volume" property="bestVolume"/>
+        <result column="origin_volume" property="originVolume"/>
+        <result column="discount_info" property="discountInfo"/>
+        <result column="origin_price" property="originPrice"/>
+        <result column="promotion_id" property="promotionId"/>
+        <result column="tb_category_id" property="tbCategoryId"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, item_url, item_id, channel_id, live_code, live_stream_id, anchor_code, item_on_time,
+        item_off_time, item_max_online, operate, creator, modifier, is_deleted, gmt_create,
+        gmt_modified, volume, gmv, price, `status`, item_name, item_img, platform, category_id,
+        initial_volume, best_volume, origin_volume, discount_info, origin_price, promotion_id,
+        tb_category_id
+    </sql>
+
+    <select id="selectPaged" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            live_item_info
+        WHERE
+            id > #{startId} and tb_category_id = '' and is_deleted = 0
+        ORDER BY
+            id
+            LIMIT #{size}
+    </select>
+
+    <update id="update">
+        update live_item_info
+        set tb_category_id = #{tbCategoryId}
+        where item_id = #{itemId}
+    </update>
+</mapper>
