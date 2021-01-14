@@ -19,7 +19,7 @@ public class EasyExcelTestCase extends ApplicationTestCase {
 
 //    @Test
     public void parseExcel() throws Exception {
-        EasyExcel.read(new ClassPathResource("/taobao_category_0731.xls").getInputStream(), Category.class, new CategoryReadListener(categoryMapper)).sheet().doRead();
+        EasyExcel.read(new ClassPathResource("/taobao_category_0106.xls").getInputStream(), Category.class, new CategoryReadListener(categoryMapper)).sheet().doRead();
 
         Thread.sleep(1000 * 60 * 60);
     }

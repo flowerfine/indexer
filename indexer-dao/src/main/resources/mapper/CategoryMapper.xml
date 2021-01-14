@@ -29,8 +29,8 @@
         WHERE
         	id > #{startId}
         ORDER BY
-        	id
-        	LIMIT #{size}
+        	id ASC
+        LIMIT #{size}
     </select>
     <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.sliew.indexer.dao.entity.Category"
             useGeneratedKeys="true">

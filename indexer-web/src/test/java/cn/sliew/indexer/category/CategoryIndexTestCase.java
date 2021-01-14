@@ -28,18 +28,19 @@ public class CategoryIndexTestCase extends ApplicationTestCase {
     @Autowired
     private CategoryMapper categoryMapper;
 
-    @Test
-    public void indexCategory() {
+//    @Test
+    public void indexCategory() throws Exception {
         long startId = 0L;
         int size = 20;
         while (true) {
             List<Category> categories = categoryMapper.selectPaged(startId, size);
             if (CollectionUtils.isEmpty(categories)) {
-                return;
+                break;
             }
             categories.parallelStream().forEach(this::index);
+            count += categories.size();
             if (categories.size() < size) {
-                return;
+                break;
             }
             startId = categories.stream().mapToLong(Category::getId).max().getAsLong();
         }
@@ -64,10 +65,8 @@ public class CategoryIndexTestCase extends ApplicationTestCase {
             request.id(category.getCategoryId());
             request.source(xContentBuilder);
             IndexResponse response = rhlClient.index(request, RequestOptions.DEFAULT);
-            log.info("{}", response.toString());
-
         } catch (IOException e) {
-            log.error(e.getMessage(), e);
+            e.printStackTrace();
         }
     }
 }

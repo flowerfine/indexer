@@ -42,7 +42,7 @@ public class ElasticsearchConfig {
         final SSLContext sslContext = sslBuilder.build();
 
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "Sgz6wjgs2eqtXLVdLklu"));
+        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "hmJVTGk4wixwPPYshr1c"));
 
         RestClientBuilder builder = RestClient.builder(
                 new HttpHost("es-data-dev-1.xinc818.com", 9200, "https"))
